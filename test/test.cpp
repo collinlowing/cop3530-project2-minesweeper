@@ -1,9 +1,11 @@
 #define CATCH_CONFIG_MAIN
 
 #include <sstream>
+#include <string>
 #include "catch/catch.hpp"
 #include "../cell.hpp"
 #include "../ui.hpp"
+#include "../minefield.hpp"
 
 // Setting some "expected" output strings to use in tests that follow
 

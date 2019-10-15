@@ -1,0 +1,10 @@
+# Don't track these folders
+.vs/
+.vscode/
+
+# Compiled soure
+*.o
+*.exe
+*.gcno
+main
+
