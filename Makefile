@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -g -std=c++11 -Wall -ftest-coverage -fprofile-arcs
 
-OBJECTS = cell.o ui.o # others as needed
+OBJECTS = cell.o ui.o minefield.o # others as needed
 
 main: $(OBJECTS) main.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
