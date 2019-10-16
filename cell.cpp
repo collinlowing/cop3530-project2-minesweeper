@@ -1,5 +1,10 @@
 #include "cell.hpp"
 
+const std::string Cell::MINE = "*";
+const std::string Cell::FLAG = "F";
+const std::string Cell::NO_ADJACENT_MINES = "0";
+const int Cell::ASCII_ZERO = 48;
+
 Cell::Cell(bool mine)
 {
 	this->mine = mine;
@@ -13,7 +18,7 @@ bool Cell::IsMine()
 	return mine;
 }
 
-void Cell::setAdjMines(int numAdjMines)
+void Cell::SetAdjacentMineCount(int numAdjMines)
 {
 	this->numAdjMines = numAdjMines;
 }
@@ -43,14 +48,14 @@ std::ostream& operator<<(std::ostream& os, const Cell& c)
 {
 	if (c.flagged)
 		os << Cell::FLAG;
-	if (c.clicked && !c.mine)
+	else if (c.clicked && !c.mine)
 	{
 		if (c.numAdjMines == 0)
 			os << Cell::NO_ADJACENT_MINES;
 		else
 			os << c.numAdjMines;
 	}
-	if (c.mine)
+	else if (c.clicked && c.mine)
 	{
 		os << Cell::MINE;
 	}

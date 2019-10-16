@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include<sstream>
+#include<string>
 #include<iomanip>
 
 class Cell
@@ -17,8 +18,11 @@ class Cell
 		bool IsMine();
 		bool Click();
 		void ToggleFlag();
-		void setAdjMines(int numAdjMines);
-		enum status { MINE, FLAG, NO_ADJACENT_MINES };
+		void SetAdjacentMineCount(int numAdjMines);
+		static const std::string MINE;
+		static const std::string FLAG;
+		static const std::string NO_ADJACENT_MINES;
+		static const int ASCII_ZERO;
 		friend std::ostream& operator<<(std::ostream& os, const Cell& c);
 };
 

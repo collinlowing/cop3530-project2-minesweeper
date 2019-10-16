@@ -149,7 +149,7 @@ TEST_CASE("Cell without mine")
 	bool reClicked = c.Click();
 	REQUIRE(!reClicked);
 }
-
+/*
 TEST_CASE("Minefield Initialization and display")
 {
 	// Add tests as needed here
@@ -239,6 +239,7 @@ TEST_CASE("UI class - Loser")
 
 	REQUIRE(ui.IsGameOver());
 }
+*/
 
 // Compile & run:
 // make clean test
