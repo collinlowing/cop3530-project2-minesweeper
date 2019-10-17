@@ -16,7 +16,7 @@ class Minefield
     public:
 		Minefield(std::string fileName);
 		void ReadFile();
-		
+		friend std::ostream& operator<<(std::ostream& os, const Minefield& mf);
 };
 
 #endif
