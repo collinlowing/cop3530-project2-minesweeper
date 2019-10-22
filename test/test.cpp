@@ -152,12 +152,28 @@ TEST_CASE("Cell without mine")
 
 TEST_CASE("Minefield Initialization and display")
 {
-	
+	std::ostringstream os;
+	Minefield mf("fourXfour.in");
+	os << mf;
+
+	REQUIRE(NOTHING_CLICKED == os.str());
 }
 
 TEST_CASE("Minefield Game Play")
 {
-	// Add tests as needed here
+	std::ostringstream os;
+	
+	bool canClick;
+	bool isFlagged;
+
+	Minefield mf("fourXfour.in");
+
+	canClick = mf.Click(-1,0);
+	REQUIRE(!canClick);
+	canClick = mf.Click(4,0);
+
+	isFlagged = mf.Flag(4,0);
+	REQUIRE(!isFlagged);
 }
 
 /*
