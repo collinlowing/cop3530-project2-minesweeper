@@ -111,24 +111,24 @@ void Minefield::Expand(int x, int y)
 std::ostream& operator<<(std::ostream& os, const Minefield& mf)
 {
 	os << "      ";
-	for(int i = 0; i < Minefield::columns - 2; i++)
+	for(int i = 0; i < mf.columns - 2; i++)
 	{
 		os << i << "   ";
 	}
-	os << Minefield::columns - 1 << " \n";
+	os << mf.columns - 1 << " \n";
 
 	os << "    ";
-	for(int j = 0; j < Minefield::columns - 1; j++)
+	for(int j = 0; j < mf.columns - 1; j++)
 	{
 		os <<"+---+";
 	}
 	os << "\n";
-	for(int i = 0; i < Minefield::rows - 1; i++)
+	for(int i = 0; i < mf.rows - 1; i++)
 	{
 		//os << "  " << j FIXME
-		for(int j = 0; j < Minefield::columns - 1; j++)
+		for(int j = 0; j < mf.columns - 1; j++)
 		{
-			os << " | " << Minefield::cell[i][j] << " |";
+			os << " | " << mf.cell[i][j] << " |";
 			os <<"+---+";
 		}
 		os << "\n";
