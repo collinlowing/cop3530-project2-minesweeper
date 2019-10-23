@@ -37,7 +37,7 @@ bool UI::SetFileName(std::string fileName)
         x = line.length();
 
         board = Minefield(fileName);
-        board.ReadFile(fileName);
+        board.ReadFile(x, y);
         inputFile.close();
         return true;
     }

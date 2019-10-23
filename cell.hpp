@@ -16,9 +16,11 @@ class Cell
     public:
 		Cell(bool mine);
 		bool IsMine();
+		bool IsFlag();
 		bool Click();
 		void ToggleFlag();
 		void SetAdjacentMineCount(int numAdjMines);
+		int GetAdjacentMineCount();
 		static const std::string MINE;
 		static const std::string FLAG;
 		static const std::string NO_ADJACENT_MINES;

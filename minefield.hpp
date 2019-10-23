@@ -10,16 +10,17 @@
 class Minefield
 {
     private:
-		int x;
-		int y;
+		int rows;
+		int columns;
 		std::string fileName;
-		Cell ** cells;
+		Cell ** cell;
     public:
 		Minefield();
 		Minefield(std::string file);
 		~Minefield();
-		void ReadFile(std::string fileName);
+		void ReadFile(int x, int y);
 		bool Click(int x, int y);
+		void Expand(int x, int y);
 		bool Flag(int x, int y);
 		friend std::ostream& operator<<(std::ostream& os, const Minefield& mf);
 };

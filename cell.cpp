@@ -18,9 +18,19 @@ bool Cell::IsMine()
 	return mine;
 }
 
+bool Cell::IsFlag()
+{
+	return flagged;
+}
+
 void Cell::SetAdjacentMineCount(int numAdjMines)
 {
 	this->numAdjMines = numAdjMines;
+}
+
+int Cell::GetAdjacentMineCount()
+{
+	return numAdjMines;
 }
 
 bool Cell::Click()
