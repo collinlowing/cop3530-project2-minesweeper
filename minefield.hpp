@@ -10,10 +10,10 @@
 class Minefield
 {
     private:
-		int rows;
-		int columns;
+		static int rows;
+		static int columns;
 		std::string fileName;
-		Cell ** cell;
+		static Cell ** cell;
     public:
 		Minefield();
 		Minefield(std::string file);

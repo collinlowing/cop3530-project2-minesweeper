@@ -5,6 +5,14 @@ const std::string Cell::FLAG = "F";
 const std::string Cell::NO_ADJACENT_MINES = "0";
 const int Cell::ASCII_ZERO = 48;
 
+Cell::Cell()
+{
+	mine = false;
+	flagged = false;
+	clicked = false;
+	numAdjMines = 0;
+}
+
 Cell::Cell(bool mine)
 {
 	this->mine = mine;
@@ -21,6 +29,11 @@ bool Cell::IsMine()
 bool Cell::IsFlag()
 {
 	return flagged;
+}
+
+bool Cell::IsCleared()
+{
+	return clicked;
 }
 
 void Cell::SetAdjacentMineCount(int numAdjMines)

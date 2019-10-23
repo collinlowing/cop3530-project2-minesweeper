@@ -52,16 +52,20 @@ bool UI::Move(char cmd, int x, int y)
             if(board.Click(x, y))
                 return true;
             else
+            {
                 std::cout << "ERROR: cell cannot be clicked." << std::endl;
                 return false;
+            }
             break;
         case 'f':
         case 'F':
             if(board.Flag(x, y))
                 return true;
             else
+            {
                 std::cout << "ERROR: cell cannot be flagged." << std::endl;
                 return false;
+            }
             break;
         default:
             std::cout << "ERROR: Not a valid command." << std::endl;
@@ -71,6 +75,6 @@ bool UI::Move(char cmd, int x, int y)
 
 std::ostream& operator<<(std::ostream& os, const UI& ui)
 {
-
+    
     return os;
 }

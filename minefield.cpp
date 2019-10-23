@@ -12,7 +12,7 @@ Minefield::Minefield(std::string file)
 
 Minefield::~Minefield()
 {
-    for(int i = 0; i < x; i++)
+    for(int i = 0; i < rows; i++)
     {
         delete [] cell[i];
     }
@@ -23,26 +23,32 @@ void Minefield::ReadFile(int x, int y)
 {
 	rows = x;
 	columns = y;
+	
 	std::string row;
-	int foundMine;
+	size_t foundMine;
 	cell = new Cell*[rows];
-	for (int i = 0; i < rows; i++)
+	int i = 0;
+
+	for(int i = 0; i < rows; i++)
 	{
 		cell[i] = new Cell[columns];
 	}
+	
 
 	std::ifstream inputFile;
 	inputFile.open(fileName);
 
 	while (getline(inputFile, row))
 	{
-		row.find('*', foundMine+1);
-		if (foundMine != string::npos)
+		while(foundMine != std::string::npos)
 		{
-			// assign mine
+			row.find('*', foundMine+1);
+		
+			// Assign mine for coordinates on the board
+			cell[i][foundMine] = Cell(true);
 		}
+		i++;
 	}
-	
 
 	inputFile.close();
 }
@@ -52,28 +58,32 @@ bool Minefield::Click(int x, int y)
 	if (cell[x][y].IsFlag())
 		return false;
 	else
+	{
 		Expand(x, y);
 		return true;
+	}
 }
 
 bool Minefield::Flag(int x, int y)
 {
-	if (!cell[x][y].isCleared())
+	if (!cell[x][y].IsCleared())
+	{
 		cell[x][y].ToggleFlag();
 		return true;
+	}
 	else
 		return false;
 }
 
-// Implement completely.
+
 void Minefield::Expand(int x, int y)
 {
-	int adjmc = Cell[x][y]getAdjacentMineCount()
-	if (cell[x][y].isMine() || adjmc > 0)
+	int adjmc = cell[x][y].GetAdjacentMineCount();
+	if (cell[x][y].IsMine() || adjmc > 0)
 	{
-		if (!cell[x][y].isCleared())
+		if (!cell[x][y].IsCleared())
 		{
-			cell[x][y].Clear();
+			cell[x][y].Click();
 		}
 		return;
 	}
@@ -100,6 +110,40 @@ void Minefield::Expand(int x, int y)
 
 std::ostream& operator<<(std::ostream& os, const Minefield& mf)
 {
+	os << "      ";
+	for(int i = 0; i < Minefield::columns - 2; i++)
+	{
+		os << i << "   ";
+	}
+	os << Minefield::columns - 1 << " \n";
 
+	os << "    ";
+	for(int j = 0; j < Minefield::columns - 1; j++)
+	{
+		os <<"+---+";
+	}
+	os << "\n";
+	for(int i = 0; i < Minefield::rows - 1; i++)
+	{
+		//os << "  " << j FIXME
+		for(int j = 0; j < Minefield::columns - 1; j++)
+		{
+			os << " | " << Minefield::cell[i][j] << " |";
+			os <<"+---+";
+		}
+		os << "\n";
+	}
+	
+
+	"      0   1   2   3 \n"
+	"    +---+---+---+---+\n"
+	"  0 |   |   |   |   |\n"
+	"    +---+---+---+---+\n"
+	"  1 |   |   |   |   |\n"
+	"    +---+---+---+---+\n"
+	"  2 |   |   |   |   |\n"
+	"    +---+---+---+---+\n"
+	"  3 |   |   |   |   |\n"
+	"    +---+---+---+---+\n";
     return os;
 }

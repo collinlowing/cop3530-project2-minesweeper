@@ -14,9 +14,11 @@ class Cell
 		bool clicked;
 		int numAdjMines;
     public:
+		Cell();
 		Cell(bool mine);
 		bool IsMine();
 		bool IsFlag();
+		bool IsCleared();
 		bool Click();
 		void ToggleFlag();
 		void SetAdjacentMineCount(int numAdjMines);
