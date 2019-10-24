@@ -3,6 +3,9 @@
 UI::UI()
 {
     gameOver = false;
+    x = -1;
+    y = -1;
+    cmd = 'x';
 }
 
 bool UI::IsGameOver()
@@ -12,10 +15,23 @@ bool UI::IsGameOver()
 
 std::string UI::GetPrompt()
 {
-    if(!gameOver)
-        return "Please enter a file name with the minefield information: ";
-    else
+    std::ostringstream os;
+    if(gameOver)
         return "Game Over!"; //add call to minefield to print cleared mine
+    else if(!SetFileName(fileName))
+    {
+        return "Please enter a file name with the minefield information: ";
+    }
+    else if(!Move(cmd, x, y))
+    {
+        return "Invalid move. Please enter your next move: ";
+    }
+    else
+    {
+        os << board;
+        return os.str() + "Choose your next move(c or f) and cell, e.g. c 0 3 to click row zero column 3: ";
+    }
+    
 }
 
 bool UI::SetFileName(std::string fileName)
@@ -36,8 +52,7 @@ bool UI::SetFileName(std::string fileName)
 
         x = line.length();
 
-        board = Minefield(fileName);
-        board.ReadFile(x, y);
+        board.ReadFile(fileName, x, y);
         inputFile.close();
         return true;
     }
@@ -75,6 +90,6 @@ bool UI::Move(char cmd, int x, int y)
 
 std::ostream& operator<<(std::ostream& os, const UI& ui)
 {
-    
+
     return os;
 }

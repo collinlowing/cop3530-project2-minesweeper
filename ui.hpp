@@ -15,6 +15,9 @@ class UI
 		std::string prompt;
 		std::string fileName;
 		Minefield board;
+		char cmd;
+		int x;
+		int y;
     public:
 		UI();
 		bool IsGameOver();

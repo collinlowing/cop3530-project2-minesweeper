@@ -2,12 +2,8 @@
 
 Minefield::Minefield()
 {
-
-}
-
-Minefield::Minefield(std::string file)
-{
-    this->fileName = file;
+	rows = 0;
+	columns = 0;
 }
 
 Minefield::~Minefield()
@@ -19,7 +15,7 @@ Minefield::~Minefield()
     delete [] cell;
 }
 
-void Minefield::ReadFile(int x, int y)
+void Minefield::ReadFile(std::string file, int x, int y)
 {
 	rows = x;
 	columns = y;
@@ -36,13 +32,14 @@ void Minefield::ReadFile(int x, int y)
 	
 
 	std::ifstream inputFile;
-	inputFile.open(fileName);
+	inputFile.open(file);
 
-	while (getline(inputFile, row))
+	while (!inputFile.eof())
 	{
+		getline(inputFile, row);
 		while(foundMine != std::string::npos)
 		{
-			row.find('*', foundMine+1);
+			foundMine = row.find('*');
 		
 			// Assign mine for coordinates on the board
 			cell[i][foundMine] = Cell(true);
@@ -111,39 +108,35 @@ void Minefield::Expand(int x, int y)
 std::ostream& operator<<(std::ostream& os, const Minefield& mf)
 {
 	os << "      ";
-	for(int i = 0; i < mf.columns - 2; i++)
+	for(int i = 0; i < mf.columns - 1; i++)
 	{
 		os << i << "   ";
 	}
-	os << mf.columns - 1 << " \n";
+	os << (mf.columns - 1) << " \n";
 
 	os << "    ";
-	for(int j = 0; j < mf.columns - 1; j++)
+	for(int j = 0; j < mf.columns; j++)
 	{
-		os <<"+---+";
+		os <<"+---";
 	}
-	os << "\n";
-	for(int i = 0; i < mf.rows - 1; i++)
+	os << "+\n";
+
+	for(int i = 0; i < mf.rows; i++)
 	{
-		//os << "  " << j FIXME
-		for(int j = 0; j < mf.columns - 1; j++)
+		os << "  " << i;
+		for(int j = 0; j < mf.columns; j++)
 		{
-			os << " | " << mf.cell[i][j] << " |";
-			os <<"+---+";
+			os << " | " << mf.cell[i][j];
 		}
-		os << "\n";
+		os << " |\n";
+
+		os << "    ";
+		for(int j = 0; j < mf.columns; j++)
+		{
+			os << "+---";
+		}
+		os << "+\n";
 	}
 	
-
-	"      0   1   2   3 \n"
-	"    +---+---+---+---+\n"
-	"  0 |   |   |   |   |\n"
-	"    +---+---+---+---+\n"
-	"  1 |   |   |   |   |\n"
-	"    +---+---+---+---+\n"
-	"  2 |   |   |   |   |\n"
-	"    +---+---+---+---+\n"
-	"  3 |   |   |   |   |\n"
-	"    +---+---+---+---+\n";
     return os;
 }

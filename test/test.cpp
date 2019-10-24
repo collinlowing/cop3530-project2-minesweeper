@@ -150,10 +150,12 @@ TEST_CASE("Cell without mine")
 	REQUIRE(!reClicked);
 }
 
+
 TEST_CASE("Minefield Initialization and display")
 {
 	std::ostringstream os;
-	Minefield mf("fourXfour.in");
+	Minefield mf;
+	mf.ReadFile("fourXfour.in", 4, 4);
 	os << mf;
 
 	REQUIRE(NOTHING_CLICKED == os.str());
@@ -166,7 +168,8 @@ TEST_CASE("Minefield Game Play")
 	bool canClick;
 	bool isFlagged;
 
-	Minefield mf("fourXfour.in");
+	Minefield mf;
+	mf.ReadFile("fourXfour.in", 4, 4);
 
 	canClick = mf.Click(-1,0);
 	REQUIRE(!canClick);
@@ -175,6 +178,7 @@ TEST_CASE("Minefield Game Play")
 	isFlagged = mf.Flag(4,0);
 	REQUIRE(!isFlagged);
 }
+
 
 /*
 TEST_CASE("UI class - Winner")

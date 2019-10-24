@@ -12,13 +12,12 @@ class Minefield
     private:
 		int rows;
 		int columns;
-		std::string fileName;
 		Cell ** cell;
     public:
 		Minefield();
 		Minefield(std::string file);
 		~Minefield();
-		void ReadFile(int x, int y);
+		void ReadFile(std::string file, int x, int y);
 		bool Click(int x, int y);
 		void Expand(int x, int y);
 		bool Flag(int x, int y);
