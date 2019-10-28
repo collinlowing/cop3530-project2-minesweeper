@@ -13,6 +13,8 @@ Cell::Cell()
 	numAdjMines = 0;
 }
 
+
+/*
 Cell::Cell(bool mine)
 {
 	this->mine = mine;
@@ -20,6 +22,13 @@ Cell::Cell(bool mine)
 	clicked = false;
 	numAdjMines = 0;
 }
+*/
+
+void Cell::SetMine(bool mine)
+{
+	this->mine = mine;
+}
+
 
 bool Cell::IsMine()
 {

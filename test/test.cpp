@@ -100,7 +100,8 @@ TEST_CASE("Cell with mine")
 {
 	std::ostringstream os;
 	bool mine = true;
-	Cell c(mine);
+	Cell c;
+	c.SetMine(mine);
 
 	REQUIRE(c.IsMine());
 
@@ -129,7 +130,8 @@ TEST_CASE("Cell with mine")
 TEST_CASE("Cell without mine")
 {
 	bool mine = false;
-	Cell c(mine);
+	Cell c;
+	c.SetMine(mine);
 	REQUIRE(!c.IsMine());
 
 	std::ostringstream os;
@@ -155,20 +157,22 @@ TEST_CASE("Minefield Initialization and display")
 {
 	std::ostringstream os;
 	Minefield mf;
+
 	mf.ReadFile("fourXfour.in", 4, 4);
 	os << mf;
 
 	REQUIRE(NOTHING_CLICKED == os.str());
 }
 
+
 TEST_CASE("Minefield Game Play")
 {
 	std::ostringstream os;
-	
+	Minefield mf;
+
 	bool canClick;
 	bool isFlagged;
 
-	Minefield mf;
 	mf.ReadFile("fourXfour.in", 4, 4);
 
 	canClick = mf.Click(-1,0);
@@ -178,7 +182,6 @@ TEST_CASE("Minefield Game Play")
 	isFlagged = mf.Flag(4,0);
 	REQUIRE(!isFlagged);
 }
-
 
 /*
 TEST_CASE("UI class - Winner")

@@ -15,7 +15,8 @@ class Cell
 		int numAdjMines;
     public:
 		Cell();
-		Cell(bool mine);
+		//Cell(bool mine);
+		void SetMine(bool mine);
 		bool IsMine();
 		bool IsFlag();
 		bool IsCleared();

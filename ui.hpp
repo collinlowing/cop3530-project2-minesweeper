@@ -24,7 +24,6 @@ class UI
 		std::string GetPrompt();
 		bool SetFileName(std::string fileName);
 		bool Move(char cmd, int x, int y);
-		friend std::ostream& operator<<(std::ostream& os, const UI& ui);
 };
 
 #endif
